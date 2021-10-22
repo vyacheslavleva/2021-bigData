@@ -10,7 +10,7 @@ rng=np.random.default_rng()
 
 #data.to_csv('suslov', sep='\t')
 
-df=pd.read_csv('suslov_1', sep='\t')
+df=pd.read_csv('suslov', sep='\t')
 
 df.columns=[0,1,2,3,4,5,6,7]
 print (df.head())
@@ -18,6 +18,7 @@ for i in range(100):
 	df.at[np.random.randint(0,9000), 0] = None
 	df.at[np.random.randint(0,9000), 1] = None
 	df.at[np.random.randint(0,9000), 2] = None
+df.to_csv('suslov',sep='\t')
 #Задача вернуть коверканный файл себе, считать его и сформулировать условия на проверку данных на уровне
 #for rows in df:
 #    for col in rows:
