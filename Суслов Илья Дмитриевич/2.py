@@ -10,7 +10,8 @@ rng=np.random.default_rng()
 #
 #print (data.head())
 #data.to_csv('suslov2', sep='\t')
-df=pd.read_csv('suslov2', sep='\t')
-df.columns=[0,1,2,3,4,5,6,7]
-a= (sum(df[4]))+(sum(df[5]))+(sum(df[6]))/(len(df[4])+len(df[5])+len(df[6]))
+df=pd.read_csv('suslov2', sep='\t', header=0, index_col=0)#,dtype={0: np.int64, 1: np.int64, 2:np.int64, 3:np.int64, 4: np.float64, 5:np.float64, 6:np.float64})
+df.columns=[x for x in range (7)]
+#a= (sum(df[4]))+(sum(df[5]))+(sum(df[6]))/(len(df[4])+len(df[5])+len(df[6]))
+a=sum(df[4:])/len(df[4:])
 print (a)
