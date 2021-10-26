@@ -65,5 +65,7 @@ def map_data(df):
 
     return df_filtered
 
+clearDF = map_data(df)
+clearDF.to_csv('vyacheslavleva_2', sep='\t')
 
 process_data(map_data(df))
