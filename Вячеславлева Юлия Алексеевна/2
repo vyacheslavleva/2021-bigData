@@ -9,7 +9,7 @@ data = pd.concat([df1, df2], axis=1)
 data.columns = [x for x in range(7)]
 #data.to_csv('vyacheslavleva', sep='\t')
 
-df = pd.read_csv('vavilova', sep='\t')
+df = pd.read_csv('vyacheslavleva', sep='\t')
 
 print(df.head())
 
@@ -18,5 +18,5 @@ for i in range(100):
     df.at[np.random.randint(0, 9000), 0] = None
     df.at[np.random.randint(0, 9000), 0] = None
 
-df.to_csv('vavilova_1', sep='\t')
+df.to_csv('vyacheslavleva_1', sep='\t')
 print(df.head())
