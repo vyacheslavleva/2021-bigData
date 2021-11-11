@@ -13,6 +13,7 @@ data.columns = [x for x in range(7)]
 
 df = pd.read_csv('vyacheslavleva', sep='\t', header=0, index_col=0)
 #print(df.head())
+
 df.columns = [x for x in range(7)]
 for i in range(100):
     df.at[np.random.randint(0, 9000), 0] /= 2
