@@ -29,10 +29,10 @@ print(df)
  
 def process_data(df):
     medium_value= sum(df[4]+df[5]+df[6])/(len(df[4])+len(df[5])+len(df[6]))
-    print(medium_value)
+    print('Medium 4:6: ', medium_value)
     min_int_value = (sum(df[0]) + sum(df[1]) + sum(df[2]) + sum(df[3])) % 100
     print(min_int_value)
-    print(factorial(min_int_value))
+    print('Factorial of min % 100 of 0:4: ', factorial(min_int_value))
 
 
 def map_data(df):
@@ -59,3 +59,5 @@ def map_data(df):
 
 
 process_data(map_data(df))
+
+
