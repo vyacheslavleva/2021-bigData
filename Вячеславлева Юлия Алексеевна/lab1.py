@@ -1,4 +1,4 @@
- import numpy as np
+import numpy as np
 import pandas as pd
 from math  import factorial
 
@@ -10,7 +10,7 @@ data = pd.concat([df1, df2], axis=1)
 
 data.columns = [x for x in range(7)]
 #print(data.head())
-
+#data.to_csv('vyacheslavleva', sep='\t')
 df = pd.read_csv('vyacheslavleva', sep='\t', header=0, index_col=0)
 #print(df.head())
 
