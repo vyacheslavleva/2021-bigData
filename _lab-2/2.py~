@@ -21,5 +21,5 @@ for i in range(1, len(x)):
 
 k_m = np.mean(k)
 
-plt.plot(y, x)
+plt.plot(x, y) #comment for test
 plt.show()
