@@ -24,6 +24,9 @@ def norm(x,p):
     return v / (sum(v ** p) ** (1/p))
     #return (v - v.min()) / (v.max() - v.min())
     
+def toDataFrame(labels, values):
+    return pd.DataFrame({'House' : labels, 'Battles': values})
+
 data = pd.read_csv('GoT/battles.csv',header=0)
 
 labels, values = map_data(
@@ -36,3 +39,4 @@ labels, values = map_data(
 
 drawPie(values, labels)
 drawPie(norm(values,1), labels, normalize=False) #нормолизация вручную
+print(toDataFrame(labels,values))
