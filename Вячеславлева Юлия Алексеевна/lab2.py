@@ -18,13 +18,23 @@ names = np.array([*name_a, *name_d])[np.array([*name_a, *name_d]) != 'nan']
 names = list(set(names))
 print(names)
 
-year = []
-#for age in data['year'].unique():
-    #for name in names:
-        #if data['attacker_king'] == names:
-            #year[name] += 1
+attacker = data.groupby(['attacker_king', 'year'], dropna=True)[['year']]
+attacker.agg('count').to_csv('l2', sep='\t')
+print(attacker.agg('count'))
+print(" ")
+defener = data.groupby(['defender_king', 'year'], dropna=True)[['year']]
+defener.agg('count').to_csv('l22', sep='\t')
+print(defener.agg('count'))
+print(" ")
 
-print(year)
+df1 = pd.read_csv('l2', header=0, sep='\t')
+df2 = pd.read_csv('l22', header=None, sep='\t', skiprows=[0])
+#df3 = pd.concat([df1, df2], axis=0, ignore_index=True)
+#df3.to_csv('222', sep='\t')
+print(df1)
+print(df1.index)
+print(df1.columns)
+print(df1.loc[1])
 
 y = data.groupby('year')['name'].nunique()
 #y = names
@@ -37,15 +47,15 @@ for i in range(1, len(x)):
     k.append((y.iat[i]-y.iat[i-1])/(x[i]-x[i-1]))
 k_m = np.mean(k)
 
-plt.plot(x, y) #comment for test
+#plt.plot(x, y) #comment for test
 #plt.show()
 
 # make the data
 np.random.seed(3)
-x = 4 + np.random.normal(0, 2, 24)
-y = 4 + np.random.normal(0, 2, len(x))
+x = df1['year']
+y = df1['attacker_king']
 # size and color:
-sizes = np.random.uniform(15, 80, len(x))
+sizes = df1['year.1']
 colors = np.random.uniform(15, 80, len(x))
 
 # plot
@@ -53,7 +63,6 @@ fig, ax = plt.subplots()
 
 ax.scatter(x, y, s=sizes, c=colors, vmin=0, vmax=100)
 
-ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
-       ylim=(0, 8), yticks=np.arange(1, 8))
+ax.set(xlim=(297, 301), xticks=np.arange(298, 301))
 
 plt.show()
