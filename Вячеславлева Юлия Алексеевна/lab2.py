@@ -3,66 +3,46 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 data = pd.read_csv('C:/Users/vja20/OneDrive/Документы/GitHub/2021-bigData/_lab-2/GoT/battles.csv', header=0)
-
 print(data.head())
 
-#data.groupby('year')['name'].nunique().plot(kind='bar')
-#plt.show()
-
-
-name_a = data['attacker_king'].unique()
-name_d = data['defender_king'].unique()
-#name_a.fillna(value=0, inplace=True)
-#name_d.fillna(value=0, inplace=True)
-names = np.array([*name_a, *name_d])[np.array([*name_a, *name_d]) != 'nan']
-names = list(set(names))
-print(names)
-
 attacker = data.groupby(['attacker_king', 'year'], dropna=True)[['year']]
-attacker.agg('count').to_csv('l2', sep='\t')
+attacker.agg('count').to_csv('l2', sep=',')
 print(attacker.agg('count'))
 print(" ")
-defener = data.groupby(['defender_king', 'year'], dropna=True)[['year']]
-defener.agg('count').to_csv('l22', sep='\t')
-print(defener.agg('count'))
+defender = data.groupby(['defender_king', 'year'], dropna=True)[['year']]
+defender.agg('count').to_csv('l22', sep=',')
+print(defender.agg('count'))
 print(" ")
 
-df1 = pd.read_csv('l2', header=0, sep='\t')
-df2 = pd.read_csv('l22', header=None, sep='\t', skiprows=[0])
-#df3 = pd.concat([df1, df2], axis=0, ignore_index=True)
-#df3.to_csv('222', sep='\t')
-print(df1)
-print(df1.index)
-print(df1.columns)
-print(df1.loc[1])
-
-y = data.groupby('year')['name'].nunique()
-#y = names
-x = data['year'].unique()
-
-k = []
-
-print(len(x))
-for i in range(1, len(x)):
-    k.append((y.iat[i]-y.iat[i-1])/(x[i]-x[i-1]))
-k_m = np.mean(k)
-
-#plt.plot(x, y) #comment for test
-#plt.show()
+df1 = pd.read_csv('l2', header=0, sep=',', na_filter=True, names=['king', 'year', 'count'])
+df2 = pd.read_csv('l22', header=0, sep=',', na_filter=True, names=['king', 'year', 'count'])
+df3 = pd.concat([df1, df2], axis=0, ignore_index=True)
+df3.to_csv('222', sep=',')
+print(df3)
+print(" ")
+df4 = df3.groupby(['king', 'year'], dropna=True)[['count']]
+df4.agg('sum').to_csv('exit', sep='\t')
+df4 = pd.read_csv('exit', header=0, sep='\t', na_filter=True, names=['king', 'year', 'count'])
+print(df4)
 
 # make the data
 np.random.seed(3)
-x = df1['year']
-y = df1['attacker_king']
+x = df4['year']
+y = df4['king']
 # size and color:
-sizes = df1['year.1']
+sizes = df4['count']*8
 colors = np.random.uniform(15, 80, len(x))
-
 # plot
 fig, ax = plt.subplots()
-
-ax.scatter(x, y, s=sizes, c=colors, vmin=0, vmax=100)
+ax.scatter(x, y, s=sizes, c=colors, vmin=0, vmax=200)
+# zip joins x and y coordinates in pairs
+for x1, y1, s1 in zip(x, y, sizes):
+    label = round(s1/df4['count'].agg('sum'), 3)
+    plt.annotate(label, # this is the text
+                 (x1, y1), # these are the coordinates to position the label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0, 5), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
 
 ax.set(xlim=(297, 301), xticks=np.arange(298, 301))
-
 plt.show()
