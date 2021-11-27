@@ -13,6 +13,7 @@ datafr.columns = ['count']
 datafr.to_csv('result', sep=',')
 
 dt = pd.read_csv('result', header=0, sep=',', na_filter=True)
+print(dt)
 
 ox_year = dt['year']
 oy_king = dt['king']
