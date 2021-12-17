@@ -40,7 +40,7 @@ def map_data(df):
     df_float.fillna(value=0, inplace=True)
     df_float.drop(df_float.iloc[:, :4], axis=1, inplace=True)
     df_filtered = pd.concat([df_int, df_float], axis=1)
-    print('filtered /----------------/')
+    print('filtered /---------------/')
     print(df_filtered)
 
     return df_filtered
