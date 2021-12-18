@@ -2,7 +2,7 @@ import pandas
 import matplotlib.pyplot as plt
 import numpy
 
-data = pandas.read_csv('GoT/battles.csv', header=0)
+data = pandas.read_csv('../_lab-2/GoT/battles.csv', header=0)
 data = data[['year', 'attacker_king']]
 data['attacker_king'] = data['attacker_king'].str.len()
 years = data['year'].unique()

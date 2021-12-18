@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = pd.read_csv('battles.csv', header=0)
+data = pd.read_csv('../../_lab-2/GoT/battles.csv', header=0)
 
 attacker = data.groupby(['attacker_king', 'year'], dropna=True)[['year']]
 attacker.agg('count').to_csv('attacker', sep=',')

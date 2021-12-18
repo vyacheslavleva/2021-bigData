@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = pd.read_csv('GoT/battles.csv', header=0)
+data = pd.read_csv('../_lab-2/GoT/battles.csv', header=0)
 
 df1 = pd.concat([data[['year', 'attacker_king']], data[['year', 'defender_king']]], axis=0, ignore_index=True)
 df1['king'] = np.where(df1['attacker_king'].isna(), df1['defender_king'], df1['attacker_king'])
