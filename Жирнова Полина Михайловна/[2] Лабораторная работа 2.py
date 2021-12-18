@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = pd.read_csv('battles.csv', usecols=['attacker_king', 'year'])
+data = pd.read_csv('../_lab-2/GoT/battles.csv', usecols=['attacker_king', 'year'])
 
 print("\nИсходные данные:\n")
 print(data)
