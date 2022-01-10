@@ -6,7 +6,7 @@ rng = np.random.default_rng()
 df1 = pd.DataFrame(rng.integers(-1000, 5000, size=(9000, 4)))
 df2 = pd.DataFrame(rng.random((9000, 3)))
 
-data = pd.concat([df1, df2], axis=1)
+data = pd.concat([df1, df2], axis=1) 
 
 data.columns = [x for x in range(7)]
 
