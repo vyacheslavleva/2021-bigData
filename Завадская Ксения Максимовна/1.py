@@ -3,7 +3,7 @@ import pandas as pd
 from math import factorial
 
 rng = np.random.default_rng()
-df1 = pd.DataFrame(rng.integers(-1000, 5000, size=(9000,4)))
+df1 = pd.DataFrame(rng.integers(-1000, 5000, size=(9000, 4)))
 df2 = pd.DataFrame(rng.random((9000, 3)))
 
 data = pd.concat([df1, df2], axis=1)
@@ -15,16 +15,17 @@ for i in range(2000):
     data.at[np.random.randint(9000), 1] = None
     data.at[np.random.randint(9000), 5] /= -9999999999
     data.at[np.random.randint(9000), 6] = None
-#data.to_csv('zavadskaya1', sep='\t')
+
+data.to_csv('zavadskaya1', sep='\t')
 
 df = pd.read_csv('zavadskaya1', sep='\t', header=0, index_col=0)
-print('Dirty dataframe')
+print('Damaged Dataframe')
 print(df.head)
 df.columns = [x for x in range(7)]
 
 
 def process_data(df):
-    medium_value = sum(df[4]+df[5]+df[6])/len(df[4])+len(df[5])+len([6])
+    medium_value = sum(df[4] + df[5] + df[6]) / len(df[4]) + len(df[5]) + len([6])
     print('Medium 4:6: ', medium_value)
     min_int_value = int(sum([df[0].mean(), df[1].mean(), df[2].mean(), df[3].mean()])) % 100
     print('Min % 100 in 0:4 ', min_int_value)
@@ -46,7 +47,7 @@ def map_data(df):
     return df_filtered
 
 
-clearDF = map_data(df)
-clearDF.to_csv('zavadskaya2', sep='\t')
+filteredData = map_data(df)
+filteredData.to_csv('zavadskaya2', sep='\t')
 
-process_data(clearDF)
+process_data(filteredData)
