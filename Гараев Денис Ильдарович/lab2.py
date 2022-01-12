@@ -6,7 +6,7 @@ import numpy as np
 from pandas.core.indexes.multi import MultiIndex
 
 data = pd.read_csv(
-    'https://raw.githubusercontent.com/kit8nino/2021-bigData/main/_lab-2/GoT/battles.csv', header=0)
+    './_lab-2/GoT/battles.csv', header=0)
 
 # print( data.groupby(['year', 'defender_1'])['name'].nunique(dropna=True) )
 
