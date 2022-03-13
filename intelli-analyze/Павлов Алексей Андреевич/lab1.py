@@ -3,7 +3,12 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv('./flavors_of_cacao.csv', header=0)
 
-refGroup = data.sort_values(by='REF').groupby("REF")[['REF', 'Rating']].mean()
+refGroup = data[['REF', 'Rating']].sort_values(by='REF')
+i = 0
+while i <= len(str(refGroup['REF'].max())):
+    i += 1
+    refGroup.loc[refGroup['REF'] > 9, 'REF'] //= 10
+refGroup = refGroup.groupby("REF")[['REF', 'Rating']].mean()
 print(refGroup)
 
 """
