@@ -17,7 +17,7 @@ def line(ax, values, colors=['r', 'c']):
     ax.legend()
 
 
-def plot_rating():
+def plot_company():
     fig, ax = plt.subplots(2, 1, sharex=True, figsize=(16, 6))
     ax[1].xaxis.set_major_locator(plt.FixedLocator(index))
     ax[1].set_xticklabels(labels=index, rotation=90)
@@ -35,10 +35,10 @@ def plot_cocoa():
     ax[1].xaxis.set_major_locator(plt.MaxNLocator(20))
     ax[1].xaxis.set_major_formatter(plt.FuncFormatter(lambda x, pos: f'{x}%'))
 
-    plot(ax[0], {'Дисперсия': byCocoa.var().fillna(0)})
+    plot(ax[0], {'Дисперсия': byCocoa.var().fillna(0)}, styles=['-'])
     line(ax[0], {'Общ. Дисперсия': rating.var()})
 
-    plot(ax[1], {'Размах': (byCocoa.max() - byCocoa.min())}, colors=['c'])
+    plot(ax[1], {'Размах': (byCocoa.max() - byCocoa.min())}, colors=['c'], styles=['-'])
     line(ax[1], {'Общ. Размах': (rating.max() - rating.min())}, colors=['c'])
 
 
@@ -51,7 +51,7 @@ byRating = data.groupby('Company Location')[['Company Location', 'Rating']]
 byCocoa = data.groupby('Cocoa Percent')['Rating']
 index = list(byRating.groups.keys())
 
-plot_rating()
+plot_company()
 plot_cocoa()
 
 plt.show()
