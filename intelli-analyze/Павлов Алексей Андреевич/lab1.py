@@ -1,5 +1,3 @@
-from itertools import count
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,33 +26,33 @@ refGroup = refGroup.groupby("REF")[['REF', 'Rating']]
 
 plt.figure(figsize=(15, 7))
 сolumn = refGroup.groups.keys()
-dispers = np.empty(9)
+tempArray = np.empty(9)
 
-dispers[...] = rating.var()
+tempArray[...] = rating.var()
 plt.subplot(2, 2, 1)
 plt.plot(сolumn, refGroup.var().fillna(0)['Rating'], label='Дисперсия Rating')
-plt.plot(сolumn, dispers, label='Общая дисперсия')
+plt.plot(сolumn, tempArray, label='Общая дисперсия')
 plt.title("Дисперсия")
 plt.legend(fontsize=10)
 
-dispers[...] = rating.mean()
+tempArray[...] = rating.mean()
 plt.subplot(2, 2, 2)
 plt.plot(сolumn, refGroup.mean()['Rating'], label='Среднее Rating')
-plt.plot(сolumn, dispers, label='Общее среднее')
+plt.plot(сolumn, tempArray, label='Общее среднее')
 plt.title("Среднее")
 plt.legend(fontsize=10)
 
-dispers[...] = rating.median()
+tempArray[...] = rating.median()
 plt.subplot(2, 2, 3)
 plt.plot(сolumn, refGroup.median()['Rating'], label='Медианное Rating')
-plt.plot(сolumn, dispers, label='Общее Медианное')
+plt.plot(сolumn, tempArray, label='Общее Медианное')
 plt.title("Медианное")
 plt.legend(fontsize=10)
 
-dispers[...] = rating.std()
+tempArray[...] = rating.std()
 plt.subplot(2, 2, 4)
 plt.plot(сolumn, refGroup.std()['Rating'], label='СКО Rating')
-plt.plot(сolumn, dispers, label='Общее СКО')
+plt.plot(сolumn, tempArray, label='Общее СКО')
 plt.title("СКО")
 plt.legend(fontsize=10)
 
@@ -63,21 +61,21 @@ plt.show()
 # Третий пункт
 
 plt.figure(figsize=(15, 7))
-dispers = np.empty(len(cocoaColumn))
+tempArray = np.empty(len(cocoaColumn))
 
-dispers[...] = cocoaGroup.var().fillna(0)
+tempArray[...] = cocoaGroup.var().fillna(0)
 plt.subplot(2, 1, 1)
-plt.plot(cocoaColumn, dispers, label='Дисперсия')
-dispers[...] = rating.var()
-plt.plot(cocoaColumn, dispers, label='Общая дисперсия')
+plt.plot(cocoaColumn, tempArray, label='Дисперсия')
+tempArray[...] = rating.var()
+plt.plot(cocoaColumn, tempArray, label='Общая дисперсия')
 plt.title("Дисперсия")
 plt.legend(fontsize=10)
 
-dispers[...] = cocoaGroup.max() - cocoaGroup.min()
+tempArray[...] = cocoaGroup.max() - cocoaGroup.min()
 plt.subplot(2, 1, 2)
-plt.plot(cocoaColumn, dispers, label='Размах')
-dispers[...] = rating.max() - rating.min()
-plt.plot(cocoaColumn, dispers, label='Общий размах')
+plt.plot(cocoaColumn, tempArray, label='Размах')
+tempArray[...] = rating.max() - rating.min()
+plt.plot(cocoaColumn, tempArray, label='Общий размах')
 plt.title("Размах")
 plt.legend(fontsize=10)
 
