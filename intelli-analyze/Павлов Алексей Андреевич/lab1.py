@@ -8,6 +8,11 @@ data = pd.read_csv('./flavors_of_cacao.csv', header=0)
 rating = data['Rating']
 data['Cocoa Percent'] = data['Cocoa Percent'].replace('%', '', regex=True)
 cocoaColumn = data.sort_values(by='Cocoa Percent')['Cocoa Percent'].unique()
+
+cocoaColumn = cocoaColumn.astype(float)
+cocoaColumn = np.sort(cocoaColumn)
+cocoaColumn = cocoaColumn.astype(str)
+cocoaColumn = [i.replace('.0', '') for i in cocoaColumn]
 cocoaGroup = data.groupby('Cocoa Percent')['Rating']
 
 # Первый пункт
