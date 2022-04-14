@@ -37,7 +37,7 @@ for i in south:
     for n in data['Company Location'].index:
         if data.at[n, 'Company Location'] == i:
             s += 1
-            if data.at[n, 'Rating'] > 3.2:
+            if data.at[n, 'Rating'] > 3.7:
                 var += 1
     new_row = {'Country': i, 'Probability': var/s, 'All records': s}
     pa2 = pa2.append(new_row, ignore_index=True)
@@ -65,7 +65,7 @@ for i in south:
     for n in data['Company Location'].index:
         if data.at[n, 'Company Location'] == i:
             s += 1
-            if (float(data.at[n, 'Cocoa Percent'].strip('%')) > 73.) & (data.at[n, 'Rating'] > 3.2):
+            if (float(data.at[n, 'Cocoa Percent'].strip('%')) > 73.) & (data.at[n, 'Rating'] > 3.7):
                 var += 1
     new_row = {'Country': i, 'Probability': var/s, 'All records': s}
     pba2 = pba2.append(new_row, ignore_index=True)
@@ -81,7 +81,8 @@ for i in south:
     PAB2 = PAB2.append(new_row, ignore_index=True)
     n += 1
 
-print('вероятность что новый сорт какао с содержанием выше 73% (Cocoa Percent) '
+print()
+print('Вероятность что новый сорт какао с содержанием выше 73% (Cocoa Percent) '
       'будет имет оценку выше 3.7 для стран южного полушария')
 print(PAB2)
 
@@ -99,6 +100,8 @@ pbaa = n / m
 
 PAB22 = paa*pbaa/pbb
 print()
+print('Общая вероятность того, что новый сорт какао с содержанием выше 73% (Cocoa Percent) '
+      'будет имет оценку выше 3.7 для стран южного полушария')
 print(PAB22)
 
 # задание 3. Сделать прогноз, какова вероятность того, что обзоры какао после 2014 года будут иметь
@@ -120,4 +123,6 @@ m = data['Review Date'].count()
 pba3 = n / m
 
 PAB3 = pa3*pba3/pb3
+print('Вероятность того, что обзоры какао после 2014 года будут иметь '
+      'оценку выше медианной по всему периоду после 2010 года')
 print(PAB3)
