@@ -82,7 +82,7 @@ for i in south:
     n += 1
 
 print('вероятность что новый сорт какао с содержанием выше 73% (Cocoa Percent) '
-      'будет имет оценку выше 3.7 для стран южного полушария')
+      'будет имет оценку выше 3.7 для каждой страны южного полушария')
 print(PAB2)
 
 n = data[(data['Rating'] > 3.7) & (data['Company Location'].isin(south))].count()['Rating']
@@ -99,6 +99,8 @@ pbaa = n / m
 
 PAB22 = paa*pbaa/pbb
 print()
+print('вероятность что новый сорт какао с содержанием выше 73% (Cocoa Percent) '
+      'будет имет оценку выше 3.7 для всех стран южного полушария')
 print(PAB22)
 
 # задание 3. Сделать прогноз, какова вероятность того, что обзоры какао после 2014 года будут иметь
@@ -109,7 +111,6 @@ median = data[data['Review Date'] > 2010]['Rating'].median()
 n = data[data['Rating'] > median].count()['Rating']
 m = data['Rating'].count()
 pa3 = n / m
-print()
 
 n = data[data['Review Date'] > 2014].count()['Review Date']
 m = data['Review Date'].count()
@@ -120,4 +121,7 @@ m = data['Review Date'].count()
 pba3 = n / m
 
 PAB3 = pa3*pba3/pb3
+print()
+print('Вероятность того, что обзоры какао после 2014 года будут иметь оценку выше медианной по всему периоду'
+      ' после 2010 года.')
 print(PAB3)
